@@ -1,4 +1,4 @@
-deepspeed --num_gpus=8 hf-trainer.py \
+deepspeed --num_gpus=1 train.py \
 --deepspeed ds_config.json \
 --model_name_or_path EleutherAI/gpt-neo-125M \
 --train_file datasets/test/train.csv \
