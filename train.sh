@@ -1,0 +1,18 @@
+deepspeed --num_gpus=8 hf-trainer.py \
+--deepspeed ds_config_gptneo.json \
+--model_name_or_path EleutherAI/gpt-neo-125M \
+--train_file datasets/test/train.csv \
+--validation_file datasets/test/validation.csv \
+--do_train \
+--do_eval \
+--fp16 \
+--overwrite_cache \
+--evaluation_strategy="steps" \
+--output_dir finetuned_test_6B_epocs5 \
+--num_train_epochs 5 \
+--eval_steps 15 \
+--gradient_accumulation_steps 4 \
+--per_device_train_batch_size 8 \
+--use_fast_tokenizer False \
+--learning_rate 5e-06 \
+--warmup_steps 10

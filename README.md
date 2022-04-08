@@ -1,2 +1,2 @@
 # superinsight-trainer-gpt
-Finetuning existing gpt model
+Finetuning existing gpt model manually
