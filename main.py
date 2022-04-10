@@ -12,7 +12,7 @@ def job(num_gpus, base_model, train_file, validation_file, finetuned_id, num_tra
     --fp16
     --overwrite_cache
     --evaluation_strategy="steps"
-    --output_dir {}\output
+    --output_dir jobs\{}\output
     --num_train_epochs {}
     --eval_steps 15
     --gradient_accumulation_steps {}
