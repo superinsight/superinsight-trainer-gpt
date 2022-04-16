@@ -134,7 +134,7 @@ def train(numGpus, baseModel, trainFile, validationFile, outputDirectory, numTra
     --warmup_steps 10'''.format(numGpus, baseModel, trainFile, validationFile, outputDirectory, numTrainEpochs, gradientAccumulationSteps, perDeviceTrainBatchSize)
     print("Running Training Job........................")
     print(command)
-    #os.system(command)
+    os.system(command)
     
 def main():
     if apiHost is not None:
