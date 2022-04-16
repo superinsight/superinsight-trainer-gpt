@@ -4,4 +4,4 @@ WORKDIR /trainer
 RUN apt-get -y update
 RUN pip install -r requirements.txt 
 ENV WANDB_DISABLED=true
-CMD ["run.sh"]
+CMD ["main.sh"]

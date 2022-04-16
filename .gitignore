@@ -130,3 +130,9 @@ dmypy.json
 
 #Mac files
 .DS_Store
+
+#Models folder
+models/
+
+#Jobs folder
+jobs/
