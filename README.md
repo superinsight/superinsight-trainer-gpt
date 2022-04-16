@@ -19,10 +19,9 @@ EXPORT_GCP_STORAGE_BUCKET | If you like to export models to GCP bucket, include 
 EXPORT_GCP_STORAGE_FOLDER | If you like to export models to GCP bucket, include the bucket name here | False | None
 
 
-# Available Base Models
-
+## Available Base Models
 Model | Hardware Tested On | Summary
---- | ---
+--- | --- | ---
 gpt-neo-125m | V100 | This is the `EleutherAI/gpt-neo-125M` model. Great option for testing
 gpt-neo-1.3b | V100 | This is the `EleutherAI/gpt-neo-1.3B` model. No longer supported by EleutherAI
 gpt-neo-2.7b  | V100 | This is the `EleutherAI/gpt-neo-2.7B` model. No longer supported by EleutherAI
