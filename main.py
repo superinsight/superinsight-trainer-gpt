@@ -136,23 +136,27 @@ def train(numGpus, baseModel, trainFile, validationFile, outputDirectory, numTra
     print(command)
     os.system(command)
     
+def run():
+    job = fetch()
+    baseModel, finetuneId, trainFile, validationFile = assign(job)
+    try:
+        if baseModel is not None and finetuneId is not None and trainFile is not None and validationFile is not None:
+            outputDirectory = "jobs/{}/output".format(finetuneId)
+            train(numGpus=numGpus, baseModel=baseModel, trainFile=trainFile, validationFile=validationFile, outputDirectory=outputDirectory, numTrainEpochs=numTrainEpochs, gradientAccumulationSteps=gradientAccumulationSteps, perDeviceTrainBatchSize=perDeviceTrainBatchSize)
+            update(finetuneId, state = "completed")
+            modelDirectory = "models/{}".format(finetuneId)
+            save(finetuneId, outputDirectory, modelDirectory)
+            export(job, modelDirectory)
+    except:
+        update(finetuneId, state = "failed")
+
 def main():
     if apiHost is not None:
-        job = fetch()
-        baseModel, finetuneId, trainFile, validationFile = assign(job)
-        try:
-            if baseModel is not None and finetuneId is not None and trainFile is not None and validationFile is not None:
-                outputDirectory = "jobs/{}/output".format(finetuneId)
-                train(numGpus=numGpus, baseModel=baseModel, trainFile=trainFile, validationFile=validationFile, outputDirectory=outputDirectory, numTrainEpochs=numTrainEpochs, gradientAccumulationSteps=gradientAccumulationSteps, perDeviceTrainBatchSize=perDeviceTrainBatchSize)
-                update(finetuneId, state = "completed")
-                modelDirectory = "models/{}".format(finetuneId)
-                save(finetuneId, outputDirectory, modelDirectory)
-                export(job, modelDirectory)        
-        except:
-            update(finetuneId, state = "failed")
+        while True:
+            run()
     else:
         print("The environment variable for apiHost has not been assigned yet")
-        
+
 if __name__ == "__main__":
     main()
 
