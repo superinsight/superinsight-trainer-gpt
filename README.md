@@ -2,7 +2,8 @@
 This is a python application that continuously look for finetunes to train by calling the SuperInsight FineTuning API. After traning has been completed the model can be exported to GCP bucket defined by your environment variable.
 
 # Prerequisite for running the trainer
-1. The [Finetuning API](The https://github.com/superinsight/superinsight-api-finetuning) is setup and running, assign url under `API_HOST` in the environment variable
+
+1. The [Finetuning API](https://github.com/superinsight/superinsight-api-finetuning) is setup and running, assign url under `API_HOST` in the environment variable
 2. Include all the environment variables so the trainer can pull jobs from the API and train successfully
 
 ## Environment Variables 
