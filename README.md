@@ -22,8 +22,8 @@ EXPORT_GCP_STORAGE_FOLDER | If you like to export models to GCP bucket, include 
 ## Available Base Models
 Base Model ID | Hardware Tested On | Summary
 --- | --- | ---
-gpt-neo-125m | V100[1-8] | This is the `EleutherAI/gpt-neo-125M` model. Great option for testing
-gpt-neo-1.3b | V100[1-8] | This is the `EleutherAI/gpt-neo-1.3B` model. No longer supported by EleutherAI
-gpt-neo-2.7b  | V100[1-8] | This is the `EleutherAI/gpt-neo-2.7B` model. No longer supported by EleutherAI
-gpt-j-6b | V100[1-8] | This is the `EleutherAI/gpt-j-6B` model. Great for finetuning
+gpt-neo-125m | NVIDIA V100 GPU [1-8] | This is the `EleutherAI/gpt-neo-125M` model. Great option for testing
+gpt-neo-1.3b | NVIDIA V100 GPU [1-8] | This is the `EleutherAI/gpt-neo-1.3B` model. No longer supported by EleutherAI
+gpt-neo-2.7b  | NVIDIA V100 GPU [1-8] | This is the `EleutherAI/gpt-neo-2.7B` model. No longer supported by EleutherAI
+gpt-j-6b | NVIDIA V100 GPU [1-8] | This is the `EleutherAI/gpt-j-6B` model. Great for finetuning
 gpt-neox-20b | N/A  | This is the `EleutherAI/gpt-neox-20b` model. Largest model from EletherAI yet. Having fully been tested with the code in this repo
