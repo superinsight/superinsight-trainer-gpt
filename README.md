@@ -18,6 +18,7 @@ PER_DEVICE_TRAIN_BATCH_SIZE | gradientAccumulationSteps used to train each job |
 PER_DEVICE_TRAIN_BATCH_SIZE | perDeviceTrainBatchSize used to train each job | True | 2
 EXPORT_GCP_STORAGE_BUCKET | If you like to export models to GCP bucket, include the bucket name here | False | None
 EXPORT_GCP_STORAGE_FOLDER | If you like to export models to GCP bucket, include the bucket name here | False | None
+GOOGLE_APPLICATION_CREDENTIALS | If you like to export models to GCP bucket, you will need to include your credentials | False | None
 WANDB_API_KEY | The API Key for wandb | False | None
 WANDB_NAME | The run name for wandb | False | None
 WANDB_NOTES | Notes for wandb  | False | None
