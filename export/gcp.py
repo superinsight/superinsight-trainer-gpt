@@ -2,7 +2,7 @@ from google.cloud import storage
 import pathlib
 import os
 bucketName= os.getenv("EXPORT_GCP_STORAGE_BUCKET", None)
-bucketFolder= os.getenv("EXPORT_GCP_STORAGE_FOLDER", None)
+bucketFolder= os.getenv("EXPORT_GCP_STORAGE_FOLDER", "")
 
 class gcp:
     def upload_model(sourcePath, bucketName, bucketFolder):
@@ -18,7 +18,7 @@ class gcp:
         blob = bucket.blob(bucketDestination)
         blob.upload_from_filename(source)
         
-    def save(sourcePath):
-        if bucketName is not None and bucketName is not None:
-            gcp.upload_model(sourcePath= sourcePath, bucketName=bucketName, bucketFolder=bucketFolder)
+    def save(finetuneId, sourcePath):
+        if bucketName is not None:
+            gcp.upload_model(sourcePath= sourcePath, bucketName=bucketName, bucketFolder="{}{}".format(bucketFolder,finetuneId))
             return True

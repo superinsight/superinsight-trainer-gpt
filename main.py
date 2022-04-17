@@ -109,7 +109,7 @@ def save(finetuneId, outputDirectory, modelDirectory):
         update(finetuneId, state = "saved")
 
 def export(finetuneId, modelDirectory):
-    exported = gcp.save(modelDirectory)
+    exported = gcp.save(finetuneId,modelDirectory)
     if exported == True:
         update(finetuneId, state = "exported")
           
@@ -146,7 +146,7 @@ def run():
             update(finetuneId, state = "completed")
             modelDirectory = "models/{}".format(finetuneId)
             save(finetuneId, outputDirectory, modelDirectory)
-            export(job, modelDirectory)
+            export(finetuneId, modelDirectory)
     except:
         update(finetuneId, state = "failed")
 
