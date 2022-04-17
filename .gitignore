@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#Mac files
+.DS_Store
+
+#Models folder
+models/
+
+#Jobs folder
+jobs/
