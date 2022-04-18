@@ -98,10 +98,17 @@ def assign(job):
         storyIds = job["storyIds"]
         storyTags = job["storyTags"]
         baseModel = getBaseModel(job["baseModelId"])
+        storyTags = job["storyTags"]
+        tokenizerName = getBaseModel(job["baseModelId"])
+        learningRate = "5e-06"
+        if job.get("tokenizerName") is not None:
+            tokenizerName = job["tokenizerName"]
+        if job.get("learningRate") is not None:
+            learningRate = job["learningRate"]
         if baseModel is not None:
             trainFile, validationFile = downloadStories(finetuneDirectory, storyIds, storyTags, splitTrainingRatio)
-            return baseModel, finetuneId, trainFile, validationFile
-    return None, None, None, None
+            return baseModel, finetuneId, trainFile, validationFile, tokenizerName, learningRate
+    return None, None, None, None, None, None
 
 def save(finetuneId, outputDirectory, modelDirectory):
     saved = local.save(outputDirectory,modelDirectory)
@@ -113,7 +120,7 @@ def export(finetuneId, modelDirectory):
     if exported == True:
         update(finetuneId, state = "exported")
           
-def train(numGpus, baseModel, trainFile, validationFile, outputDirectory, numTrainEpochs, gradientAccumulationSteps, perDeviceTrainBatchSize):
+def train(numGpus, baseModel, trainFile, validationFile, outputDirectory, numTrainEpochs, gradientAccumulationSteps, perDeviceTrainBatchSize, tokenizerName, learningRate):
     command ='''deepspeed --num_gpus={} train.py \
     --deepspeed ds_config.json \
     --model_name_or_path {} \
@@ -129,20 +136,20 @@ def train(numGpus, baseModel, trainFile, validationFile, outputDirectory, numTra
     --eval_steps 15 \
     --gradient_accumulation_steps {} \
     --per_device_train_batch_size {} \
-    --use_fast_tokenizer False \
-    --learning_rate 5e-06 \
-    --warmup_steps 10'''.format(numGpus, baseModel, trainFile, validationFile, outputDirectory, numTrainEpochs, gradientAccumulationSteps, perDeviceTrainBatchSize)
+    --tokenizer_name {} \
+    --learning_rate {} \
+    --warmup_steps 10'''.format(numGpus, baseModel, trainFile, validationFile, outputDirectory, numTrainEpochs, gradientAccumulationSteps, perDeviceTrainBatchSize, tokenizerName, learningRate)
     print("Running Training Job........................")
     print(command)
     os.system(command)
     
 def run():
     job = fetch()
-    baseModel, finetuneId, trainFile, validationFile = assign(job)
+    baseModel, finetuneId, trainFile, validationFile, tokenizerName, learningRate = assign(job)
     try:
-        if baseModel is not None and finetuneId is not None and trainFile is not None and validationFile is not None:
+        if baseModel is not None and finetuneId is not None and trainFile is not None and validationFile is not None and tokenizerName is not None and learningRate is not None:
             outputDirectory = "jobs/{}/output".format(finetuneId)
-            train(numGpus=numGpus, baseModel=baseModel, trainFile=trainFile, validationFile=validationFile, outputDirectory=outputDirectory, numTrainEpochs=numTrainEpochs, gradientAccumulationSteps=gradientAccumulationSteps, perDeviceTrainBatchSize=perDeviceTrainBatchSize)
+            train(numGpus=numGpus, baseModel=baseModel, trainFile=trainFile, validationFile=validationFile, outputDirectory=outputDirectory, numTrainEpochs=numTrainEpochs, gradientAccumulationSteps=gradientAccumulationSteps, perDeviceTrainBatchSize=perDeviceTrainBatchSize, tokenizerName = tokenizerName, learningRate=learningRate)
             update(finetuneId, state = "completed")
             modelDirectory = "models/{}".format(finetuneId)
             save(finetuneId, outputDirectory, modelDirectory)
