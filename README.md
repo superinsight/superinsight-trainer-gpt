@@ -33,6 +33,6 @@ Base Model ID | Hardware Tested On | Summary
 --- | --- | ---
 gpt-neo-125m | NVIDIA V100 GPU | The `EleutherAI/gpt-neo-125M` model. Good option for testing.
 gpt-neo-1.3b | NVIDIA V100 GPU | The `EleutherAI/gpt-neo-1.3B` model.
-gpt-neo-2.7b  | NVIDIA V100 GPU | The `EleutherAI/gpt-neo-2.7B` model.
+gpt-neo-2.7b | NVIDIA V100 GPU | The `EleutherAI/gpt-neo-2.7B` model.
 gpt-j-6b | NVIDIA V100 GPU | The `EleutherAI/gpt-j-6B` model.
-gpt-neox-20b | N/A  | The `EleutherAI/gpt-neox-20b` model. Haven't tested on this yet.
+gpt-neox-20b | N/A | The `EleutherAI/gpt-neox-20b` model. Haven't tested on this yet.
