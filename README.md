@@ -40,5 +40,5 @@ gpt-neox-20b | N/A | The `EleutherAI/gpt-neox-20b` model. Haven't tested on this
 
 ## Run Trainer with docker [GPU]
 ```
-docker run --rm --gpus all --name superinsight-trainer-gpt superinsight/superinsight-trainer-gpt:latest
+docker run --gpus all --name superinsight-trainer-gpt superinsight/superinsight-trainer-gpt:latest
 ```
