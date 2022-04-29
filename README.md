@@ -38,7 +38,14 @@ gpt-j-6b | NVIDIA V100 GPU | The `EleutherAI/gpt-j-6B` model.
 gpt-neox-20b | N/A | The `EleutherAI/gpt-neox-20b` model. Haven't tested on this yet.
 
 
-## Run Trainer with docker [GPU]
+## Run Trainer with docker
+Here are some sample commands on how you can get started by running the docker image directly
+
+### Run with gpu processors
 ```
 docker run --gpus all --name superinsight-trainer-gpt superinsight/superinsight-trainer-gpt:latest
+```
+### Run with env
+```
+docker run --gpus all --env API_HOST=https://finetuning.api.yourdomain --name superinsight-trainer-gpt superinsight/superinsight-trainer-gpt:latest
 ```
